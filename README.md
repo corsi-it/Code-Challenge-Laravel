@@ -28,8 +28,8 @@ This programming challenge is designed to evaluate your skills as a software eng
 
 
 ## Definition of Done
-The PHPUnit test case passes without any failures or errors.
-The CSV file is read in and processed correctly, and the correct results are displayed in the view.
+- The PHPUnit test case passes without any failures or errors.
+- The CSV file is read in and processed correctly, and the correct results are displayed in the view.
 
 ## Evaluation
 Your solution will be evaluated based on the following acceptance criteria:
