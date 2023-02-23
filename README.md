@@ -20,10 +20,9 @@ This programming challenge is designed to evaluate your skills as a software eng
 - Your code must be written in PHP using the Laravel framework.
 - Your code must be well-organized and easy to understand.
 - Your code should adhere to Laravel best practices.
-- Your code should be documented with clear comments and/or inline documentation where necessary.
-- Your PHPUnit tests should cover all relevant use cases and edge cases.
+- Your code should be documented with clear comments and/or inline documentation ONLY where necessary.
+- You can add more PHPUnit tests if needed.
 - Your code should be committed to a new branch in your forked repository.
-- You are allowed to use Google
 - Do not cheat or plagiarize. The evaluator reserves the right to disqualify any submissions suspected of cheating.
 
 
@@ -48,4 +47,4 @@ Your solution will be evaluated based on the following acceptance criteria:
 
 
 
-Good luck!
+### *Good luck!*
