@@ -14,9 +14,9 @@ product_id,product_name,category,price,date_added
 13,Azure Adventure,Books,22.49,2022-01-13
 14,Pink Pizazz,Clothing,19.99,2022-01-14
 15,Crimson Canyon,Electronics,19.99,2022-01-15
-16,Silver Stream,Books,28.99,2022-01-16
-17,Moonlit Meadow,Clothing,32.99,2022-01-17
-18,Green Garden,Electronics,15.99,2022-01-18
+16,Silver Stream,Books,28.99,2022-01-15
+17,Moonlit Meadow,Clothing,32.99,2022-01-15
+18,Green Garden,Electronics,15.99,2022-01-15
 19,Cozy Cottage,Books,23.49,2022-01-19
 20,Blossom Boulevard,Clothing,30.99,2022-01-20
 21,Electric Expedition,Electronics,12.99,2022-01-21
@@ -30,8 +30,3 @@ product_id,product_name,category,price,date_added
 29,Cool Canyon,Clothing,26.99,2022-01-29
 30,Skyline Serenade,Electronics,19.99,2022-01-30
 31,Fantastic Forest,Books,24.99,2022-01-31
-32,Harmonic Horizon,Clothing,33.49,2022-02-01
-33,Orchid Oasis,Electronics,16.99,2022-02-02
-34,Mountain Mist,Books,28.99,2022-02-03
-35,Rustic Retreat,Clothing,31.99,2022-02-04
-36,Desert Dreams,Electronics,15.99,2022-02-05
