@@ -6,8 +6,11 @@ This programming challenge is designed to evaluate your skills as a software eng
 - Create a new Laravel application in the cloned repository directory.
 - Write PHP code to read in the products.csv file located in the /storage/app directory and generate a product report in HTML format.
 - The design of the HTML page is not relevant for the evaluation, feel free to show a simple table.
+- Provide the same data, via api, /products, in order to run PHPUnit tests
 - The product report should include the following information:
   - Total revenue of all products
+  - Total revenue in the first half of the month
+  - Total revenue in the second half of the month
   - Total number of products in each category
   - Average price of products in each category
 - Verify that the PHPUnit tests pass. Feel free to add more if needed.
@@ -21,7 +24,8 @@ This programming challenge is designed to evaluate your skills as a software eng
 - Your code must be well-organized and easy to understand.
 - Your code should adhere to Laravel best practices.
 - Your code should be documented with clear comments and/or inline documentation ONLY where necessary.
-- You can add more PHPUnit tests if needed.
+- You can add more PHPUnit tests, if needed.
+- You may refactor existing code/tests, if needed.
 - Your code should be committed to a new branch in your forked repository.
 - Do not cheat or plagiarize. The evaluator reserves the right to disqualify any submissions suspected of cheating.
 
