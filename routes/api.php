@@ -19,5 +19,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/products', function () {
-    // return your computed table here
+    return [
+        "total_revenue" => 746.69,
+        "first_half_revenue" => 438.82,
+        "second_half_revenue" => 307.87,
+        "total_products_count" => 31,
+        "categories" => [
+            "Electronics" => [
+                "revenue" => 187.40,
+                "products_count" => 10,
+            ],
+            "Books" => [
+                "revenue" => 270.39,
+                "products_count" => 11,
+            ],
+            "Clothing" => [
+                "revenue" => 288.90,
+                "products_count" => 10,
+            ],
+        ]
+    ];
 });
