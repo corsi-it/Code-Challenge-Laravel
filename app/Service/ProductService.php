@@ -6,39 +6,42 @@ use Carbon\Carbon;
 
 class ProductService
 {
+    public const DATE_ADDED_COLUMN = 'date_added';
+    public const PRICE_COLUMN = 'price';
     public function parseProducts()
     {
         $csvFile = storage_path('/app/products.csv');
-        $file_handle = fopen($csvFile, 'r');
-        while (!feof($file_handle)) {
-            $line_of_text[] = fgetcsv($file_handle, 0, ',');
+        $fileHandle = fopen($csvFile, 'r');
+        while (!feof($fileHandle)) {
+            $lineOfText[] = fgetcsv($fileHandle, 0, ',');
         }
-        fclose($file_handle);
+        fclose($fileHandle);
 
-        if (empty($line_of_text)) {
+        if (empty($lineOfText)) {
             return [
                 'header' => [],
                 'products' => []
             ];
         }
 
-        $header = array_shift($line_of_text);
-        $items = collect();
-        foreach ($line_of_text as $value) {
-            $item = [];
-            foreach ($header as $index => $val) {
-                if ($val === 'date_added') {
-                    $item[$val] = Carbon::parse($value[$index]);
+        $header = array_shift($lineOfText);
+
+        $products = collect($lineOfText)->map(function ($item) use ($header) {
+            $result = [];
+            foreach ($header as $index => $value) {
+                if ($value === self::DATE_ADDED_COLUMN) {
+                    $result[$value] = Carbon::parse($item[$index]);
                     continue;
                 }
-                $item[$val] = $value[$index];
+                $result[$value] = $item[$index];
             }
-            $items->push($item);
-        }
+
+            return $result;
+        });
 
         return [
             'header' => $header,
-            'products' => collect($items)
+            'products' => $products
         ];
     }
 }

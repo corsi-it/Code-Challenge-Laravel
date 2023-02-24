@@ -25,15 +25,15 @@ class ProductsController extends Controller
 
         $firstHalfRevenue = $products->filter(function ($item) {
             /** @var Carbon $date */
-            $date = $item['date_added'];
+            $date = $item[ProductService::DATE_ADDED_COLUMN];
             return $date->day <= 15;
-        })->sum('price');
+        })->sum(ProductService::PRICE_COLUMN);
 
         $secondHalfRevenue = $products->filter(function ($item) {
             /** @var Carbon $date */
-            $date = $item['date_added'];
+            $date = $item[ProductService::DATE_ADDED_COLUMN];
             return $date->day > 15;
-        })->sum('price');
+        })->sum(ProductService::PRICE_COLUMN);
 
 
         return response()->json([
