@@ -1,6 +1,13 @@
 name: PHPUnit
 
-on: [push]
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    types: [opened, reopened, edited]
+    branches:
+      - "main"
 
 jobs:
   laravel-tests:
