@@ -10,19 +10,24 @@
 
 <body>
     <h1>Products</h1>
-    <div></div>
+    <ul></ul>
 </body>
 
 <script>
     fetch('/api/products')
         .then(response => response.json())
         .then(data => {
-            document.querySelector('div').innerHTML += `
-            Total revenue: ${data.total_revenue} <br>
-            First half revenue: ${data.first_half_revenue} <br>
-            Second half revenue: ${data.second_half_revenue} <br>
-            Total count: ${data.total_products_count} <br>
-            Categories: ${JSON.stringify(data.categories)}
+            document.querySelector('ul').innerHTML += `
+                <li>Total revenue: ${data.total_revenue}</li>
+                <li>First half revenue: ${data.first_half_revenue} </li>
+                <li>Second half revenue: ${data.second_half_revenue} </li>
+                <li>Total count: ${data.total_products_count} </li>
+                <li>
+                    Categories:
+                    <ul>
+                        ${Object.keys(data.categories).map(categoryName => `<li>${categoryName} = Revenue: ${data.categories[categoryName].revenue} - Count: ${data.categories[categoryName].products_count}</li>`).join('')}
+                    </ul>
+                </li>
             `;
         });
 </script>
