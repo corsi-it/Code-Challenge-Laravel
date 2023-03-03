@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return your computed table here
-});
+//Route::get('/', function () {
+//});
+
+Route::get('/process-file/{fileName?}', [\App\Http\Controllers\ProductController::class, 'processFile']);
