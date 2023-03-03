@@ -18,6 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/products', function () {
-    // return your computed table here
-});
+Route::get('/products', [\App\Http\Controllers\Api\ApiCsvParserController::class, 'products'])->name('api_parse_csv_data');

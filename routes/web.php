@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // return your computed table here
 });
+
+Route::get('/products', [\App\Http\Controllers\Web\CsvParserController::class, 'index'])->name('parse_csv_data');
