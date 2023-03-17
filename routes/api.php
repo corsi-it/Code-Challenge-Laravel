@@ -20,4 +20,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/products', function () {
     // return your computed table here
+
+    $csvFile = storage_path('app/products.csv');
+
+    $csv = array_map('str_getcsv', file($csvFile));
+    array_walk($csv, function(&$a) use ($csv) {
+        $a = array_combine($csv[0], $a);
+    });
+    array_shift($csv);
+
+    return response()->json($csv);
+
 });
