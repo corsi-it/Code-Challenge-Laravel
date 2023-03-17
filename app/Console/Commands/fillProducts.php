@@ -44,9 +44,9 @@ class fillProducts extends Command
             $pid = $row["product_id"];
             $category = $row["category"];
             $categoryObj = isset($categoryCache[$category]) ? $categoryCache[$category] : null;
-            if(empty($categoryObj)) {
-                $categoryObj = ProductCategory::query()->where("category",$category)->first();
-                if(empty($categoryObj)) {
+            if (empty($categoryObj)) {
+                $categoryObj = ProductCategory::query()->where("category", $category)->first();
+                if (empty($categoryObj)) {
                     $categoryObj = ProductCategory::make();
                     $categoryObj->category = $category;
                     $categoryObj->save();

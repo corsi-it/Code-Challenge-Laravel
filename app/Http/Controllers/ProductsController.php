@@ -28,24 +28,32 @@ class ProductsController extends Controller
         $midMonth = floor($endOfMonth->diffInDays($startOfMonth) / 2);
 
         $products = Product::all();
+        $categories = [];
+        $_categories = ProductCategory::all()->map(function ($category) {
+            return (object)[
+                "category_name" => $category->category,
+                "products_count" => $category->products()->count(),
+                "revenue" => (double)$category->products()->sum('price'),
+                "average" => (double)$category->products()->avg('price')
+            ];
+        })->groupBy("category_name");
+
+        foreach ($_categories as $category => $data) {
+            $categories[$category] = $data->first();
+        }
+
         $data = [
             "products" => $products,
-            "categories" => ProductCategory::all()->map(function ($category) {
-                return (object)[
-                    "category_name" => $category->category,
-                    "products_count" => $category->products()->count(),
-                    "revenue" => $category->products()->sum('price')
-                ];
-            })->groupBy("category_name"),
+            "categories" => $categories,
             "total_products_count" => $products->count(),
-            "first_half_revenue" => Product::query()
+            "first_half_revenue" => (double)Product::query()
                 ->whereBetween("date_added", [$startOfMonth, $startOfMonth->clone()->addDays($midMonth)])
                 ->sum('price'),
-            "second_half_revenue" => Product::query()
+            "second_half_revenue" => (double)Product::query()
                 ->whereBetween("date_added", [$endOfMonth->clone()->addDays(-1 * $midMonth), $endOfMonth])
                 ->sum('price'),
-            "total_revenue" => $products->sum("price"),
-            "average_revenue" => $products->avg("price")
+            "total_revenue" => (double)$products->sum("price"),
+            "average_revenue" => (double)$products->avg("price")
         ];
 
         return response()->json($data, 200);

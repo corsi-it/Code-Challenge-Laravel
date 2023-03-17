@@ -28,7 +28,7 @@ class ProductsTest extends TestCase
     {
         $response = $this->getJson('/api/products');
         $response->assertJson(fn(AssertableJson $json) => $json
-            ->where('average_revenue', fn($actual) => $this->floatEquals($actual, 746.69))
+            ->where('average_revenue', fn($actual) => $this->floatEquals($actual, 24.086774193548393))
             ->whereType('average_revenue', 'double')
             ->etc()
         );

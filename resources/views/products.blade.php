@@ -48,6 +48,7 @@
                 <br/>
                 Number of Products: {{$category->products()->count()}}<br/>
                 Avg Price: {{number_format($category->products()->avg('price'),2)}}<br/>
+                Revenue Price: {{number_format($category->products()->sum('price'),2)}}<br/>
             </div>
 
         @endforeach
