@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // return your computed table here
 });
+
+
+Route::get('/products',"App\Http\Controllers\ProductsController@list");
