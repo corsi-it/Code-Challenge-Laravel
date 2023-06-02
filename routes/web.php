@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileReaderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return your computed table here
-});
+Route::get('/', [FileReaderController::class, 'view']);
