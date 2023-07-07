@@ -28,9 +28,28 @@ class ProductController extends Controller
      *
      * @return Factory|View|Application
      */
-    public function products(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function products(Request $request): Factory|View|Application
     {
         $products = $this->productService->parse();
         return view('products')->with('products', $products);
+    }
+
+    public function reports(Request $request)
+    {
+        $products = $this->productService->parse();
+        $totalRevenue = $this->productService->getTotalRevenue($products);
+        $firstHalfRevenue = $this->productService->getTotalRevenueInFirstHalfOfMonth($products);
+        $secondHalfRevenue = $this->productService->getTotalRevenueInSecondHalfOfMonth($products);
+        $numberOfProductsInCategories = $this->productService->getCountOfProductsInCategories($products);
+        $averagePriceByCategory = $this->productService->getAveragePriceByCategory($products);
+
+        return view('reports', compact(
+            'products',
+            'totalRevenue',
+            'firstHalfRevenue',
+            'secondHalfRevenue',
+            'numberOfProductsInCategories',
+            'averagePriceByCategory'
+        ));
     }
 }

@@ -16,3 +16,4 @@ Route::get('/', function(){
     return redirect()->route('products');
 });
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'products'])->name('products');
+Route::get('/reports', [\App\Http\Controllers\ProductController::class, 'reports'])->name('reports');
