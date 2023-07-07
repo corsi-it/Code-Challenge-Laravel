@@ -30,6 +30,20 @@ class ProductController extends Controller
     public function products(Request $request): \Illuminate\Http\JsonResponse
     {
         $products = $this->productService->parse();
-        return response()->json(['data' => $products]);
+        $totalRevenue = $this->productService->getTotalRevenue($products);
+        $firstHalfRevenue = $this->productService->getTotalRevenueInFirstHalfOfMonth($products);
+        $secondHalfRevenue = $this->productService->getTotalRevenueInSecondHalfOfMonth($products);
+        $numberOfProductsInCategories = $this->productService->getCountOfProductsInCategories($products);
+        $averagePriceByCategory = $this->productService->getAveragePriceByCategory($products);
+
+
+        return response()->json([
+            'data' => $products,
+            'total_revenue' => $totalRevenue,
+            'first_half_revenue' => $firstHalfRevenue,
+            'second_half_revenue' => $secondHalfRevenue,
+            'total_products_count' => $products->count(),
+            'categories' => $numberOfProductsInCategories->mergeRecursive($averagePriceByCategory),
+        ]);
     }
 }

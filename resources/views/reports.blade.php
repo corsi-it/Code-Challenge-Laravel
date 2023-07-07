@@ -8,14 +8,14 @@
         <li>Total number of products in each category :
             <ul>
                 @foreach($numberOfProductsInCategories as $key => $item)
-                    <li>{{  $key . ' : '}} <b>{{ $item }}</b></li>
+                    <li>{{  $key . ' : '}} <b>{{ $item['products_count'] }}</b></li>
                 @endforeach
             </ul>
         </li>
         <li>Average price of products in each category :
             <ul>
                 @foreach($averagePriceByCategory as $key => $item)
-                    <li>{{  $key . ' : '}} <b>{{ $item }}</b></li>
+                    <li>{{  $key . ' : '}} <b>{{ $item['revenue'] }}</b></li>
                 @endforeach
             </ul>
         </li>

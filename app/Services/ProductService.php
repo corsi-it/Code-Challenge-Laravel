@@ -84,7 +84,7 @@ class ProductService
     function getCountOfProductsInCategories($products):Collection
     {
         $categoryCounts = $products->groupBy('category')->map(function ($items) {
-            return $items->count();
+            return ['products_count' => $items->count()];
         });
         return $categoryCounts;
     }
@@ -97,7 +97,7 @@ class ProductService
     function getAveragePriceByCategory($products): Collection
     {
         $categoryAverages = $products->groupBy('category')->map(function ($items) {
-            return $items->avg('price');
+            return ['revenue' => $items->sum('price')];
         });
 
         return $categoryAverages;
