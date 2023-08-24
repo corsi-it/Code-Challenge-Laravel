@@ -21,6 +21,11 @@ class ProductDataReader extends CSVReader
     {
         $productData = $this->CSVReader->execute($path);
 
+        return $this->elaborateProductData($productData);
+    }
+
+    private function elaborateProductData(array $productData): array
+    {
         return [
             'categories' => $this->mapCategories($productData),
             'total_revenue' => $this->getTotalRevenue($productData),
@@ -38,38 +43,51 @@ class ProductDataReader extends CSVReader
 
     private function getTotalRevenue(array $data): float
     {
-        return array_reduce(
+        $value =  array_reduce(
             callback: static fn($sum, $row) => $row[self::PRICE] + $sum,
             array: $data,
             initial: 0
         );
+
+        return $this->formatPrice($value);
     }
 
     private function mapCategories(array $data): array
+    {
+        $categoryList = $this->getCategoryList($data);
+        $result = $this->getEmptyResult($categoryList);
+
+        foreach ($data as $product) {
+            $result[$product[self::CATEGORY]]['products_count']++;
+            $result[$product[self::CATEGORY]]['revenue'] += $product[self::PRICE];
+        }
+
+        foreach ($result as $key => $category) {
+            $result[$key]['revenue'] = $this->formatPrice($category['revenue']);
+        }
+
+        return $result;
+    }
+
+    private function getCategoryList(array $data): array
     {
         $categoryNames = array_map(
             callback: static fn($row) => $row[self::CATEGORY],
             array: $data
         );
 
-        $categoryNames = array_unique($categoryNames);
+        return array_unique($categoryNames);
+    }
 
-        $categories = [];
+    private function getEmptyResult(array $categoryList): array
+    {
+        $result = [];
 
-        foreach ($categoryNames as $category) {
-            $categories[$category] = $this->categoryEmptyRow();
+        foreach ($categoryList as $category) {
+            $result[$category] = $this->categoryEmptyRow();
         }
 
-        foreach ($data as $product) {
-            $categories[$product[self::CATEGORY]]['products_count']++;
-            $categories[$product[self::CATEGORY]]['revenue'] += $product[self::PRICE];
-        }
-
-        foreach ($categories as $key => $category) {
-            $categories[$key]['revenue'] = $this->formatPrice($categories[$key]['revenue']);
-        }
-
-        return $categories;
+        return $result;
     }
 
     private function categoryEmptyRow(): array
