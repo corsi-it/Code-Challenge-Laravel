@@ -105,12 +105,7 @@ class ProductDataReader extends CSVReader
             array: $productData
         );
 
-        $productRevenue =  array_reduce(
-            callback: static fn($sum, $row) => $row[self::PRICE] + $sum,
-            array: $productData
-        );
-
-        return $this->formatPrice($productRevenue);
+        return $this->getTotalRevenue($productData);
     }
 
     private function getDayFromDate(string $date): int
