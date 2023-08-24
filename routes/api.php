@@ -18,6 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/products', function () {
-    // return your computed table here
-});
+Route::get('/products', [\App\Http\Controllers\ApiProductController::class, 'index']);
