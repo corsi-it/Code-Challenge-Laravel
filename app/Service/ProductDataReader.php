@@ -15,7 +15,8 @@ class ProductDataReader extends CSVReader
     private const DATE_ADDED = 'date_added';
 
     public function __construct(private CSVReader $CSVReader)
-    {}
+    {
+    }
 
     public function execute(string $path): array
     {
@@ -120,5 +121,4 @@ class ProductDataReader extends CSVReader
     {
         return (float) number_format($price, 2);
     }
-
 }
