@@ -42,17 +42,6 @@ class ProductDataReader extends CSVReader
         ];
     }
 
-    private function getTotalRevenue(array $data): float
-    {
-        $value =  array_reduce(
-            callback: static fn($sum, $row) => $row[self::PRICE] + $sum,
-            array: $data,
-            initial: 0
-        );
-
-        return $this->formatPrice($value);
-    }
-
     private function mapCategories(array $data): array
     {
         $categoryList = $this->getCategoryList($data);
@@ -106,6 +95,17 @@ class ProductDataReader extends CSVReader
         );
 
         return $this->getTotalRevenue($productData);
+    }
+
+    private function getTotalRevenue(array $data): float
+    {
+        $value =  array_reduce(
+            callback: static fn($sum, $row) => $row[self::PRICE] + $sum,
+            array: $data,
+            initial: 0
+        );
+
+        return $this->formatPrice($value);
     }
 
     private function getDayFromDate(string $date): int
