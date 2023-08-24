@@ -13,6 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return your computed table here
-});
+Route::get('/', [\App\Http\Controllers\IndexController::class, 'index']);
