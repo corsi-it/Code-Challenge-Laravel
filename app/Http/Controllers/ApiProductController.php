@@ -13,7 +13,7 @@ class ApiProductController extends Controller
     public function index(ProductDataReader $apiProductFormatter): JsonResponse
     {
         return \response()->json(
-          $apiProductFormatter->execute('app/products.csv')
+            $apiProductFormatter->execute('app/products.csv')
         );
     }
 }

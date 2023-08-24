@@ -56,7 +56,6 @@ class ProductDataReader extends CSVReader
     {
         $categoryList = $this->getCategoryList($data);
         $result = $this->getEmptyResult($categoryList);
-
         foreach ($data as $product) {
             $result[$product[self::CATEGORY]]['products_count']++;
             $result[$product[self::CATEGORY]]['revenue'] += $product[self::PRICE];
@@ -115,7 +114,7 @@ class ProductDataReader extends CSVReader
 
     private function getDayFromDate(string $date): int
     {
-        return (int)(new \DateTimeImmutable($date))->format('d');
+        return (int) (new \DateTimeImmutable($date))->format('d');
     }
     private function formatPrice(int|float $price): float
     {
